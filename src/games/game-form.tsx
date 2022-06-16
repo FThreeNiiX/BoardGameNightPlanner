@@ -12,6 +12,7 @@ const defaultGame: GameWithMetadata = {
     maxPlayers: 4,
     updateExistingEvents: false,
     timesPlayed: 0,
+    wishlist: [],
 }
 
 export const GameForm: React.FC = () => {
@@ -77,8 +78,14 @@ export const GameForm: React.FC = () => {
         values: GameWithMetadata,
         formikHelpers: FormikHelpers<GameWithMetadata>
     ) {
+        const data = {
+            ...values,
+            timesPlayed: values.timesPlayed || 0,
+            wishlist: values.wishlist || [],
+        }
+        console.log("data", data)
         await saveGame(
-            { ...values, timesPlayed: values.timesPlayed || 0 },
+            data,
             selectedGameContext.selectedGame
                 ? selectedGameContext.selectedGame.id
                 : ""

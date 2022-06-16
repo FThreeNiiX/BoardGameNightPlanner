@@ -17,6 +17,7 @@ export const GameListItem: React.FC<GameListItemProperties> = (props) => {
                     ? "tr is-selected"
                     : "tr"
             }
+            style={{ cursor: "pointer" }}
             onClick={handleItemClick}
         >
             <td className="td">{props.game.data.name}</td>

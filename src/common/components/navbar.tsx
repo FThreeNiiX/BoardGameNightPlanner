@@ -20,7 +20,6 @@ const NavbarLogo = <Logo />;
 
 export const Navbar: React.FC<NavbarProperties> = (props) => {
     const [showMenu, setShowMenu] = useState<boolean>(false);
-    console.log(props.user)
 
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">

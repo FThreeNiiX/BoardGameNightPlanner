@@ -16,7 +16,7 @@ export interface UpcomingEventCardProperties {
 export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (
     props
 ) => {
-    const [showAttendees, setshowAttendees] = useState<boolean>(false)
+    const [showAttendees, setshowAttendees] = useState<boolean>(true)
     const keys = Object.keys(props.event.data.attendees)
     const openSeats = props.event.data.game.data.maxPlayers - keys.length
     const timestamp = props.event.data.timestamp.toDate()
@@ -116,6 +116,18 @@ export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (
             </div>
             <div className="card-content">
                 <div className="content">
+                    <h4 className="is-size-5">
+                        <a
+                            href={`https://www.youtube.com/results?search_query=how+to+play+${props.event.data.game.data.name.replace(
+                                " ",
+                                "+"
+                            )}+board+game`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            How to Play
+                        </a>
+                    </h4>
                     <p>
                         {timestamp.toDateString()}
                         <br />
@@ -155,18 +167,6 @@ export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (
                             Edit Event
                         </GeneratedLink>
                     )}
-                    <h4 className="is-size-5">
-                        <a
-                            href={`https://www.youtube.com/results?search_query=how+to+play+${props.event.data.game.data.name.replace(
-                                " ",
-                                "+"
-                            )}+board+game`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            How to Play
-                        </a>
-                    </h4>
                 </div>
             </div>
             {actions}

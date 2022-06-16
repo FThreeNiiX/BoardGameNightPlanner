@@ -69,7 +69,6 @@ export const EventForm: React.FC<RouteComponentProps<{ id?: string }>> = (
         values: Event,
         formikHelpers: FormikHelpers<Event>
     ) {
-        console.log("values", values)
         await saveEvent(props.match.params.id, values)
         formikHelpers.resetForm({ values: defaultEvent })
     }

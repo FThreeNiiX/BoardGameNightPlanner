@@ -40,6 +40,7 @@ export async function saveGame(
         bggLink: gameWithMetadata.bggLink,
         maxPlayers: gameWithMetadata.maxPlayers,
         timesPlayed: gameWithMetadata.timesPlayed,
+        wishlist: gameWithMetadata.wishlist,
         // imageLink: gameWithMetadata.imageLink,
     }
 

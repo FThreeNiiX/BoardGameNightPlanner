@@ -15,6 +15,7 @@ export interface Game {
     maxPlayers: number
     imageLink?: string
     timesPlayed?: number
+    wishlist?: string[]
 }
 
 export type Attendees = { [userId: string]: string }

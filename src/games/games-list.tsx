@@ -6,7 +6,7 @@ import { GameDetails } from "./game-details"
 import { GameForm } from "./game-form"
 import { GameListItem } from "./game-list-item"
 
-const GamesListTable: React.FC = () => {
+const GamesListTable: React.FC<GamesListProperties> = ({ user }) => {
     const [games, gamesError] = useGames()
     return (
         <>
@@ -17,11 +17,12 @@ const GamesListTable: React.FC = () => {
                         <th className="th">Cover Art</th>
                         <th className="th">Max Players</th>
                         <th className="th">Times Played</th>
+                        <th className="th">Wishlisted</th>
                     </tr>
                 </thead>
                 <tbody className="tbody">
                     {games.map((g, i) => (
-                        <GameListItem key={g.id} game={g} />
+                        <GameListItem key={g.id} game={g} user={user} />
                     ))}
                 </tbody>
             </table>
@@ -63,7 +64,7 @@ export const GamesList: React.FC<GamesListProperties> = ({ user }) => {
                 <SelectGameContextProvider>
                     <div className="columns">
                         <div className="column is-half">
-                            <GamesListTable />
+                            <GamesListTable user={user} />
                         </div>
                         <div className="column is-half">
                             {user?.data.isAdmin ? (

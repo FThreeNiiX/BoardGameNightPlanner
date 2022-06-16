@@ -1,37 +1,78 @@
 import { Thumbnail } from "common/components/thumbnail"
-import { Document, Game } from "models"
+import { saveGame } from "firebase-hooks/games"
+import { Document, Game, User } from "models"
 import * as React from "react"
 import { SelectedGameContext } from "./games-list"
 
 export interface GameListItemProperties {
     readonly game: Document<Game>
+    readonly user: Document<User> | null
 }
 
-export const GameListItem: React.FC<GameListItemProperties> = (props) => {
+interface WishlistItemProperties {
+    name: string
+}
+const WishlistItem: React.FC<WishlistItemProperties> = ({ name }) => {
+    return <p>{name}</p>
+}
+
+export const GameListItem: React.FC<GameListItemProperties> = ({
+    game,
+    user,
+}) => {
     const selectedGameContext = React.useContext(SelectedGameContext)
 
     return (
         <tr
             className={
-                selectedGameContext.selectedGame === props.game
+                selectedGameContext.selectedGame === game
                     ? "tr is-selected"
                     : "tr"
             }
             style={{ cursor: "pointer" }}
             onClick={handleItemClick}
         >
-            <td className="td">{props.game.data.name}</td>
+            <td className="td">{game.data.name}</td>
             <td className="td">
                 {" "}
-                <Thumbnail url={props.game.data.bggLink} small={true} />
+                <Thumbnail url={game.data.bggLink} small={true} />
             </td>
-            <td className="td">{props.game.data.maxPlayers}</td>
-            <td className="td">{props.game.data.timesPlayed || 0}</td>
+            <td className="td">{game.data.maxPlayers}</td>
+            <td className="td">{game.data.timesPlayed || 0}</td>
+            <td className="td">
+                {game.data.wishlist && game.data.wishlist?.length > 0
+                    ? game?.data?.wishlist.map((item) => (
+                          <WishlistItem name={item} key={item} />
+                      ))
+                    : "No wishlist"}
+                <button
+                    className="button is-primary"
+                    onClick={() => handleSubmit()}
+                >
+                    {game.data.wishlist &&
+                    user?.data.displayName &&
+                    game.data.wishlist?.indexOf(user?.data?.displayName) >
+                        -1 ? (
+                        <i className="fas fa-heart-broken" />
+                    ) : (
+                        <i className="fas fa-heart" />
+                    )}
+                </button>
+            </td>
         </tr>
     )
 
     function handleItemClick(event: React.MouseEvent<HTMLTableRowElement>) {
-        selectedGameContext.setSelectedGame(props.game)
+        selectedGameContext.setSelectedGame(game)
+    }
+
+    async function handleSubmit() {
+        let wishlist = game.data.wishlist || []
+        const name = user?.data.displayName || ""
+        if (wishlist.indexOf(name) === -1) {
+            wishlist.push(name)
+        } else wishlist = wishlist.filter((item) => item !== name)
+        await saveGame({ ...game.data, wishlist }, game.id)
     }
 }
 GameListItem.whyDidYouRender = true

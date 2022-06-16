@@ -12,10 +12,11 @@ const GamesListTable: React.FC<GamesListProperties> = ({ user }) => {
         SelectedGameContext
     )
     React.useEffect(() => {
-        if (!selectedGame) setSelectedGame(games[0])
-    }, [games, selectedGame, setSelectedGame])
-    console.log("selectedGame", selectedGame)
-    console.log("games", games)
+        if (!selectedGame && !user?.data.isAdmin) {
+            setSelectedGame(games[0])
+        }
+    }, [games, selectedGame, setSelectedGame, user])
+
     return (
         <>
             <table className="table">
@@ -69,6 +70,7 @@ export const GamesList: React.FC<GamesListProperties> = ({ user }) => {
         <section className="section">
             <div className="container">
                 <h1 className="title">Games</h1>
+
                 <SelectGameContextProvider>
                     <div className="columns">
                         <div className="column is-half">

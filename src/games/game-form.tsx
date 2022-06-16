@@ -83,7 +83,7 @@ export const GameForm: React.FC = () => {
             timesPlayed: values.timesPlayed || 0,
             wishlist: values.wishlist || [],
         }
-        console.log("data", data)
+
         await saveGame(
             data,
             selectedGameContext.selectedGame

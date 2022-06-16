@@ -70,7 +70,9 @@ export const GameListItem: React.FC<GameListItemProperties> = ({
     )
 
     function handleItemClick(event: React.MouseEvent<HTMLTableRowElement>) {
-        selectedGameContext.setSelectedGame(game)
+        selectedGameContext.setSelectedGame(
+            selectedGameContext.selectedGame === game ? null : game
+        )
     }
 
     async function handleSubmit() {

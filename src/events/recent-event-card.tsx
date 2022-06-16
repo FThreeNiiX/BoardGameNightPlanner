@@ -37,7 +37,10 @@ export const RecentEventCard: React.FC<RecentEventCardProperties> = (props) => {
         <div className="card" data-key={props.event.id}>
             <div className="card-image">
                 <figure className="image is-square">
-                    <Thumbnail url={props.event.data.game.data.bggLink} />
+                    <Thumbnail
+                        url={props.event.data.game.data.bggLink}
+                        small={false}
+                    />
                 </figure>
             </div>
             <div className="card-header">

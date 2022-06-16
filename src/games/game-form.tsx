@@ -57,7 +57,7 @@ export const GameForm: React.FC = () => {
                 )}
                 {props.values.bggLink && (
                     <figure className="image is-128x128">
-                        <Thumbnail url={props.values.bggLink} />
+                        <Thumbnail url={props.values.bggLink} small={true} />
                     </figure>
                 )}
                 {/* <Field<GameWithMetadata> name="image" label="Image" type="file" component={FileField} /> */}

@@ -1,3 +1,4 @@
+import { Thumbnail } from "common/components/thumbnail"
 import { Document, Game } from "models"
 import * as React from "react"
 import { SelectedGameContext } from "./games-list"
@@ -19,6 +20,10 @@ export const GameListItem: React.FC<GameListItemProperties> = (props) => {
             onClick={handleItemClick}
         >
             <td className="td">{props.game.data.name}</td>
+            <td className="td">
+                {" "}
+                <Thumbnail url={props.game.data.bggLink} small={true} />
+            </td>
             <td className="td">{props.game.data.maxPlayers}</td>
             <td className="td">{props.game.data.timesPlayed || 0}</td>
         </tr>

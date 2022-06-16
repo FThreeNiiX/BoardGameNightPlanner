@@ -11,7 +11,10 @@ export const GameDetails: React.FC = () => {
         <div className="card">
             <div className="card-image">
                 <figure className="image is-square">
-                    <Thumbnail url={selectedGame?.data.bggLink || ""} />
+                    <Thumbnail
+                        url={selectedGame?.data.bggLink || ""}
+                        small={false}
+                    />
                 </figure>
             </div>
             <div className="card-header">

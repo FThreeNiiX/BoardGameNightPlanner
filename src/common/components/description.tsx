@@ -1,4 +1,5 @@
 import { getBggData } from "common/utils"
+import he from "he"
 import React from "react"
 
 interface DescriptionProps {
@@ -17,5 +18,11 @@ export const Description = ({ url }: DescriptionProps) => {
         }
     }, [url])
 
+    return (
+        <p>
+            {/* {he.decode(description)} */}
+            {he.unescape(he.decode(description))}
+        </p>
+    )
     return <p>{description}</p>
 }

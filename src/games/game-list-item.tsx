@@ -1,3 +1,4 @@
+import { Campaign } from "common/components/campaign"
 import { Thumbnail } from "common/components/thumbnail"
 import { saveGame } from "firebase-hooks/games"
 import { Document, Game, User } from "models"
@@ -32,7 +33,10 @@ export const GameListItem: React.FC<GameListItemProperties> = ({
             style={{ cursor: "pointer" }}
             onClick={handleItemClick}
         >
-            <td className="td">{game.data.name}</td>
+            <td className="td">
+                {game.data.name}
+                <Campaign url={game.data.bggLink} />
+            </td>
             <td className="td">
                 {" "}
                 <Thumbnail url={game.data.bggLink} small={true} />

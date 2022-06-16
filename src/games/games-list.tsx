@@ -8,6 +8,14 @@ import { GameListItem } from "./game-list-item"
 
 const GamesListTable: React.FC<GamesListProperties> = ({ user }) => {
     const [games, gamesError] = useGames()
+    const { selectedGame, setSelectedGame } = React.useContext(
+        SelectedGameContext
+    )
+    React.useEffect(() => {
+        if (!selectedGame) setSelectedGame(games[0])
+    }, [games, selectedGame, setSelectedGame])
+    console.log("selectedGame", selectedGame)
+    console.log("games", games)
     return (
         <>
             <table className="table">
@@ -30,7 +38,7 @@ const GamesListTable: React.FC<GamesListProperties> = ({ user }) => {
         </>
     )
 }
-GamesListTable.whyDidYouRender = true
+GamesListTable.whyDidYouRender = false
 
 interface SelectedGame {
     readonly selectedGame: Document<Game> | null
@@ -79,4 +87,4 @@ export const GamesList: React.FC<GamesListProperties> = ({ user }) => {
         </section>
     )
 }
-GamesList.whyDidYouRender = true
+GamesList.whyDidYouRender = false

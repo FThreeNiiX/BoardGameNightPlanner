@@ -203,4 +203,4 @@ export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (
         }
     }
 }
-UpcomingEventCard.whyDidYouRender = true
+UpcomingEventCard.whyDidYouRender = false

@@ -87,4 +87,4 @@ export const GameForm: React.FC = () => {
         selectedGameContext.setSelectedGame(null)
     }
 }
-GameForm.whyDidYouRender = true
+GameForm.whyDidYouRender = false

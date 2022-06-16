@@ -8,4 +8,4 @@ export const Login: React.FC = () => {
 
     return <div id="firebaseui-auth-container" />
 }
-Login.whyDidYouRender = true
+Login.whyDidYouRender = false

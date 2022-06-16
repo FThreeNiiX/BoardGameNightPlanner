@@ -75,4 +75,4 @@ export const GameListItem: React.FC<GameListItemProperties> = ({
         await saveGame({ ...game.data, wishlist }, game.id)
     }
 }
-GameListItem.whyDidYouRender = true
+GameListItem.whyDidYouRender = false

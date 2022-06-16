@@ -29,4 +29,4 @@ export const GamesSelect: React.FC<GamesSelectProps> = (
         return game.data.name
     }
 }
-GamesSelect.whyDidYouRender = true
+GamesSelect.whyDidYouRender = false

@@ -27,7 +27,7 @@ const UpcomingEvents: React.FC<EventsProperties> = (props) => {
         </>
     )
 }
-UpcomingEvents.whyDidYouRender = true
+UpcomingEvents.whyDidYouRender = false
 
 const RecentEvents: React.FC<EventsProperties> = (props) => {
     const [recentEvents, recentEventsError] = useRecentEvents()
@@ -45,7 +45,7 @@ const RecentEvents: React.FC<EventsProperties> = (props) => {
         </>
     )
 }
-RecentEvents.whyDidYouRender = true
+RecentEvents.whyDidYouRender = false
 
 export const Events: React.FC<EventsProperties> = (props) => {
     return (
@@ -57,4 +57,4 @@ export const Events: React.FC<EventsProperties> = (props) => {
         </section>
     )
 }
-Events.whyDidYouRender = true
+Events.whyDidYouRender = false

@@ -10,4 +10,4 @@ export const Logout: React.FC = () => {
         </div>
     )
 }
-Logout.whyDidYouRender = true
+Logout.whyDidYouRender = false

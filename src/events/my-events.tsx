@@ -28,4 +28,4 @@ export const MyEvents: React.FC<EventsProperties> = (props) => {
         </section>
     )
 }
-MyEvents.whyDidYouRender = true
+MyEvents.whyDidYouRender = false

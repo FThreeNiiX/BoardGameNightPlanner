@@ -44,4 +44,4 @@ export const TimestampField = <T,>(props: TimestampFieldProperties<T>) => {
         </>
     )
 }
-TimestampField.whyDidYouRender = true
+TimestampField.whyDidYouRender = false

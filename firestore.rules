@@ -23,8 +23,8 @@ service cloud.firestore {
 
     match /games/{gameId} {
       allow read: if isSignedIn()
-      // allow write: if isSignedIn(
-      allow write: if isSignedIn() && isAdmin()
+      allow write: if isSignedIn()
+     // allow write: if isSignedIn() && isAdmin()
     }
 
     match /events/{eventId} {

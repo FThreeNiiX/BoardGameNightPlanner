@@ -66,4 +66,4 @@ export const EventForm: React.FC<RouteComponentProps<{ id?: string }>> = (
         formikHelpers.resetForm({ values: defaultEvent })
     }
 }
-EventForm.whyDidYouRender = true
+EventForm.whyDidYouRender = false

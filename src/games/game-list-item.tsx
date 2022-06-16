@@ -41,9 +41,16 @@ export const GameListItem: React.FC<GameListItemProperties> = ({
             <td className="td">{game.data.timesPlayed || 0}</td>
             <td className="td">
                 {game.data.wishlist && game.data.wishlist?.length > 0
-                    ? game?.data?.wishlist.map((item) => (
-                          <WishlistItem name={item} key={item} />
-                      ))
+                    ? game?.data?.wishlist.map((item, index) => {
+                          let name = item
+                          if (game.data.wishlist) {
+                              name =
+                                  index !== game.data.wishlist.length - 1
+                                      ? `${item}, `
+                                      : item
+                          }
+                          return <WishlistItem name={name} key={item} />
+                      })
                     : "No wishlist"}
                 <button
                     className="button is-primary"

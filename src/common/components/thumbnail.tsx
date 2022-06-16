@@ -9,7 +9,7 @@ export const Thumbnail = ({url}: ThumbnailProps) =>{
     const [thumbnail,setThumbnail] = React.useState('');
     React.useEffect(() => {
         async function fetchData(link:string) {
-            const response = await getBggData(url)
+            const response = await getBggData(url,'image')
             setThumbnail(response)
         }
         if(url){

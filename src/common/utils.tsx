@@ -1,7 +1,7 @@
 import * as XMLParser from 'react-xml-parser';
-export const getBggData = async (url:string):Promise<string> => {
+export const getBggData = async (url:string, key:string):Promise<string> => {
     if(url.length === 0) return ''
-    let thumbnail = '';
+    let data = '';
     const id =(url.substring(
          url.indexOf('/boardgame/') + 11, 
          url.lastIndexOf('/')
@@ -10,10 +10,10 @@ export const getBggData = async (url:string):Promise<string> => {
      try{
         const response = await fetch(test);
         const responseData = await response.text()
-         thumbnail = (new XMLParser().parseFromString(responseData).getElementsByTagName('image')[0]?.value);
+         data = (new XMLParser().parseFromString(responseData).getElementsByTagName(key)[0]?.value);
       }
       catch(error){
       console.log(error)
       } 
-      return thumbnail
+      return data
 }

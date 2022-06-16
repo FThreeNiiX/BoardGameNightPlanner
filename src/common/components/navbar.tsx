@@ -41,8 +41,8 @@ export const Navbar: React.FC<NavbarProperties> = (props) => {
                         <GeneratedLink className="navbar-item" route={Routes.Events_MyEvents}>My Events</GeneratedLink>
                         {props.user.data.isAdmin && <>
                             <GeneratedLink className="navbar-item" route={Routes.Events_Edit} parameters={{ id: undefined }}>Create Event</GeneratedLink>
-                            <GeneratedLink className="navbar-item" route={Routes.Games_List}>Games</GeneratedLink>
                         </>}
+                            <GeneratedLink className="navbar-item" route={Routes.Games_List}>Games</GeneratedLink>
                     </div>
                 }
 

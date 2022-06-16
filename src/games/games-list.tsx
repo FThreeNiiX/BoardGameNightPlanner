@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Game, Document } from 'models';
+import { Game, Document, User } from 'models';
 import { GameForm } from './game-form';
 import { useGames } from 'firebase-hooks/games';
 import { useState } from 'react';
 import { GameListItem } from './game-list-item';
+import { GameDetails } from './game-details';
 
 const GamesListTable: React.FC = () => {
     const [games, gamesError] = useGames();
@@ -37,7 +38,11 @@ const SelectGameContextProvider: React.FC = (props) => {
     return <SelectedGameContext.Provider value={{ selectedGame, setSelectedGame }}>{props.children}</SelectedGameContext.Provider>
 }
 
-export const GamesList: React.FC = () => {
+export interface GamesListProperties {
+    readonly user: Document<User> | null;
+}
+
+export const GamesList: React.FC<GamesListProperties>= ({user}) => {
 
     return <section className="section">
         <div className="container">
@@ -48,7 +53,7 @@ export const GamesList: React.FC = () => {
                         <GamesListTable />
                     </div>
                     <div className="column is-half">
-                        <GameForm />
+                        {user?.data.isAdmin ? <GameForm /> : <GameDetails/>}
                     </div>
                 </div>
             </SelectGameContextProvider>

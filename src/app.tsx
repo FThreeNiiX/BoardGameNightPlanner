@@ -22,7 +22,7 @@ export const App: React.FC = () => {
                 <AuthRoute path={Routes.Root} exact={true} user={user} render={renderEvents} />
                 <AuthRoute path={Routes.Events_MyEvents} user={user} render={renderMyEvents} />
                 <AuthRoute path={Routes.Events_Edit} user={user} component={EventForm} />
-                <AuthRoute path={Routes.Games_List} user={user} component={GamesList} />
+                <AuthRoute path={Routes.Games_List} user={user} component={renderGamesList} />
             </Switch>
         </Router>
     </>;
@@ -33,5 +33,9 @@ export const App: React.FC = () => {
 
     function renderEvents() {
         return <Events user={user!} />
+    }
+
+   function renderGamesList() {
+        return <GamesList user={user}/>
     }
 }

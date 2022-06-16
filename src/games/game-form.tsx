@@ -1,11 +1,9 @@
 import { Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import * as React from 'react';
 import { Field } from 'common/components/field';
-import { FileField } from 'common/components/file-field';
 import { GameWithMetadata, saveGame } from 'firebase-hooks/games';
 import { useContext } from 'react';
 import { SelectedGameContext } from './games-list';
-import { getBggData } from 'common/utils';
 import { Thumbnail } from 'common/components/thumbnail';
 
 const defaultGame: GameWithMetadata = {

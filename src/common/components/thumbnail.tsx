@@ -19,7 +19,7 @@ export const Thumbnail = ({ url, small }: ThumbnailProps) => {
         if (url) {
             fetchData(url)
         }
-    }, [url])
+    }, [url, small])
 
     return <img src={thumbnail} alt="thumbnail" />
 }

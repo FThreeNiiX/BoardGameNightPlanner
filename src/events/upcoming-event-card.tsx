@@ -54,6 +54,8 @@ export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (props) 
         }
     }
 
+    const name = props.event.data.game.data.name.replace(' ','+')
+
     return <div className="card" data-key={props.event.id}>
         <div className="card-image">
             <figure className="image is-square">
@@ -87,6 +89,9 @@ export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (props) 
                 {props.user.data.isAdmin &&
                     <GeneratedLink className="button is-primary" route={Routes.Events_Edit} parameters={{ id: props.event.id }}>Edit Event</GeneratedLink>
                 }
+                <h4 className="is-size-5">
+                    <a href={`https://www.youtube.com/results?search_query=how+to+play+${props.event.data.game.data.name.replace(' ','+')}+board+game`} target="_blank" rel="noopener noreferrer">How to Play</a>
+                </h4>
             </div>
         </div>
         {actions}

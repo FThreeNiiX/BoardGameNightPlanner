@@ -25,6 +25,8 @@ export const TimestampField = <T,>(props: TimestampFieldProperties<T>) => {
     }
 
     const date = field.value.toDate()
+    date.setHours(19)
+    date.setMinutes(0)
     const m = moment(date)
 
     return (

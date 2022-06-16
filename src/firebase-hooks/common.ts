@@ -1,9 +1,9 @@
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/firestore';
-import 'firebase/storage';
-import * as firebaseui from 'firebaseui';
-import { Document } from 'models';
+import * as firebase from "firebase/app"
+import "firebase/auth"
+import "firebase/firestore"
+import "firebase/storage"
+import * as firebaseui from "firebaseui"
+import { Document } from "models"
 
 // Your web app's Firebase configuration
 // var firebaseConfig = {
@@ -22,26 +22,28 @@ const firebaseConfig = {
     storageBucket: "bg-billy.appspot.com",
     messagingSenderId: "289681515587",
     appId: "1:289681515587:web:ba08326557b049db31e0f6",
-    measurementId: "G-8PNM0B9NJE"
-  };
+    measurementId: "G-8PNM0B9NJE",
+}
 // Initialize Firebase
-const fbApp = firebase.initializeApp(firebaseConfig);
+const fbApp = firebase.initializeApp(firebaseConfig)
 
-export const auth = fbApp.auth();
-export const authSignInOptions = [firebase.auth.GoogleAuthProvider.PROVIDER_ID];
-export const authUI = new firebaseui.auth.AuthUI(auth);
-export const db = fbApp.firestore();
-export const storage = fbApp.storage();
+export const auth = fbApp.auth()
+export const authSignInOptions = [firebase.auth.GoogleAuthProvider.PROVIDER_ID]
+export const authUI = new firebaseui.auth.AuthUI(auth)
+export const db = fbApp.firestore()
+export const storage = fbApp.storage()
 
 export enum Collections {
-    Users = 'users',
-    Events = 'events',
-    Games = 'games',
+    Users = "users",
+    Events = "events",
+    Games = "games",
 }
 
-export function convertDocument<T>(document: firebase.firestore.DocumentSnapshot): Document<T> {
+export function convertDocument<T>(
+    document: firebase.firestore.DocumentSnapshot
+): Document<T> {
     return {
         id: document.id,
-        data: document.data() as T
+        data: document.data() as T,
     }
 }

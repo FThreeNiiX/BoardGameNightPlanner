@@ -1,6 +1,12 @@
-import { useState, useEffect } from 'react';
-import { auth, authUI, authSignInOptions, db, Collections } from 'firebase-hooks/common';
-import { Document, User } from 'models';
+import {
+    auth,
+    authSignInOptions,
+    authUI,
+    Collections,
+    db,
+} from "firebase-hooks/common"
+import { Document, User } from "models"
+import { useEffect, useState } from "react"
 
 export function useLogin(authElementId: string) {
     useEffect(() => {
@@ -11,44 +17,46 @@ export function useLogin(authElementId: string) {
                         const user: User = {
                             displayName: authResult.user.displayName,
                             email: authResult.user.email,
-                        };
-                        db.collection(Collections.Users).doc(authResult.user.uid).set(user, { merge: true });
+                        }
+                        db.collection(Collections.Users)
+                            .doc(authResult.user.uid)
+                            .set(user, { merge: true })
                     }
-                    return false;
-                }
+                    return false
+                },
             },
-            signInFlow: 'popup',
+            signInFlow: "popup",
             signInOptions: authSignInOptions,
-        });
-    }, [authElementId]);
+        })
+    }, [authElementId])
 }
 
 export function useCurrentUser() {
-    const [user, setUser] = useState<Document<User> | null>(null);
+    const [user, setUser] = useState<Document<User> | null>(null)
 
     useEffect(() => {
-        auth.onAuthStateChanged(async fbUser => {
+        auth.onAuthStateChanged(async (fbUser) => {
             if (fbUser) {
-                const token = await fbUser.getIdTokenResult(true);
+                const token = await fbUser.getIdTokenResult(true)
                 const user: Document<User> = {
                     id: fbUser.uid,
                     data: {
                         displayName: fbUser.displayName,
                         email: fbUser.email,
                         // isAdmin: token.claims.admin
-                        isAdmin: fbUser.uid === 'MHzd4g8yKEXXzUVPSqKv5xEFOB03'
-                    }
+                        isAdmin: fbUser.uid === "MHzd4g8yKEXXzUVPSqKv5xEFOB03",
+                    },
                 }
-                setUser(user);
+                setUser(user)
             } else {
-                setUser(null);
+                setUser(null)
             }
-        });
-    }, []);
+        })
+    }, [])
 
-    return user;
+    return user
 }
 
 export async function signOut() {
-    await auth.signOut();
+    await auth.signOut()
 }

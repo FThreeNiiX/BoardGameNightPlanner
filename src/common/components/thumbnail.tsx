@@ -1,21 +1,21 @@
-import { getBggData } from 'common/utils';
-import React from 'react'
+import { getBggData } from "common/utils"
+import React from "react"
 
 interface ThumbnailProps {
     url: string
 }
 
-export const Thumbnail = ({url}: ThumbnailProps) =>{
-    const [thumbnail,setThumbnail] = React.useState('');
+export const Thumbnail = ({ url }: ThumbnailProps) => {
+    const [thumbnail, setThumbnail] = React.useState("")
     React.useEffect(() => {
-        async function fetchData(link:string) {
-            const response = await getBggData(url,'image')
+        async function fetchData(link: string) {
+            const response = await getBggData(url, "image")
             setThumbnail(response)
         }
-        if(url){
-         fetchData(url);
+        if (url) {
+            fetchData(url)
         }
-      }, [url]);
+    }, [url])
 
-      return <img src={thumbnail} alt="thumbnail" />
+    return <img src={thumbnail} alt="thumbnail" />
 }

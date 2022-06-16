@@ -1,14 +1,11 @@
-import 'firebaseui/dist/firebaseui.css';
-import './login.css';
-
-import * as React from 'react';
-import { useLogin } from 'firebase-hooks/auth';
+import { useLogin } from "firebase-hooks/auth"
+import "firebaseui/dist/firebaseui.css"
+import * as React from "react"
+import "./login.css"
 
 export const Login: React.FC = () => {
-    useLogin('#firebaseui-auth-container');
+    useLogin("#firebaseui-auth-container")
 
-    return (
-        <div id="firebaseui-auth-container" />
-    );
+    return <div id="firebaseui-auth-container" />
 }
-Login.whyDidYouRender = true;
+Login.whyDidYouRender = true

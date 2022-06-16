@@ -5,13 +5,13 @@
 */
 
 button.card-footer-item {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  color: #3273dc;
-  font-size: 1rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: #3273dc;
+    font-size: 1rem;
 }
 
 button.card-footer-item:hover {
-  color: #363636;
+    color: #363636;
 }

@@ -1,46 +1,53 @@
-import { Collections, convertDocument, db, storage } from 'firebase-hooks/common';
-import { Document, Game } from 'models';
-import { useEffect, useState } from 'react';
+import { Collections, convertDocument, db } from "firebase-hooks/common"
+import { Document, Game } from "models"
+import { useEffect, useState } from "react"
 
 export function useGames(): [Document<Game>[], Error | null] {
-    const [games, setGames] = useState<Document<Game>[]>([]);
-    const [error, setError] = useState<Error | null>(null);
+    const [games, setGames] = useState<Document<Game>[]>([])
+    const [error, setError] = useState<Error | null>(null)
 
     useEffect(() => {
-        const gamesListener = db.collection(Collections.Games)
-            .orderBy('name', 'asc')
-            .onSnapshot(snapshot => {
-                setGames(snapshot.docs.map(e => convertDocument(e)));
-            }, error => {
-                setError(error);
-            });
+        const gamesListener = db
+            .collection(Collections.Games)
+            .orderBy("name", "asc")
+            .onSnapshot(
+                (snapshot) => {
+                    setGames(snapshot.docs.map((e) => convertDocument(e)))
+                },
+                (error) => {
+                    setError(error)
+                }
+            )
         return function cleanup() {
-            gamesListener();
-        };
-    }, []);
+            gamesListener()
+        }
+    }, [])
 
-    return [games, error];
+    return [games, error]
 }
 
 export interface GameWithMetadata extends Game {
-    image?: File;
-    updateExistingEvents?: boolean;
+    image?: File
+    updateExistingEvents?: boolean
 }
 
-export async function saveGame(gameWithMetadata: GameWithMetadata, id?: string) {
+export async function saveGame(
+    gameWithMetadata: GameWithMetadata,
+    id?: string
+) {
     const game: Game = {
         name: gameWithMetadata.name,
         bggLink: gameWithMetadata.bggLink,
         maxPlayers: gameWithMetadata.maxPlayers,
         timesPlayed: gameWithMetadata.timesPlayed,
         // imageLink: gameWithMetadata.imageLink,
-    };
+    }
 
-    const collection = db.collection(Collections.Games);
-    let gameRef: firebase.firestore.DocumentReference;
+    const collection = db.collection(Collections.Games)
+    let gameRef: firebase.firestore.DocumentReference
     if (!id) {
-        gameRef = collection.doc();
-        id = gameRef.id;
+        gameRef = collection.doc()
+        id = gameRef.id
     }
 
     // Save image
@@ -51,17 +58,18 @@ export async function saveGame(gameWithMetadata: GameWithMetadata, id?: string) 
     // }
 
     // Update game
-    await collection.doc(id).set(game);
+    await collection.doc(id).set(game)
 
     if (gameWithMetadata.updateExistingEvents) {
         // Update existing games
-        const snapshot = await db.collection(Collections.Events)
-            .where('game.id', '==', id)
-            .get();
-        const batch = db.batch();
+        const snapshot = await db
+            .collection(Collections.Events)
+            .where("game.id", "==", id)
+            .get()
+        const batch = db.batch()
         for (const g of snapshot.docs) {
-            batch.update(g.ref, 'game.data', game);
+            batch.update(g.ref, "game.data", game)
         }
-        await batch.commit();
+        await batch.commit()
     }
 }

@@ -1,25 +1,25 @@
-import logo from 'assets/logo.jpg';
-
-import React from 'react';
-import { GeneratedLink } from 'common/components/generatedLink';
-import { Routes } from 'common/routes';
-import { useState } from 'react';
-import { Document, User } from 'models';
-import { Logout, Login } from 'auth';
+import logo from "assets/logo.jpg"
+import { Login, Logout } from "auth"
+import { GeneratedLink } from "common/components/generatedLink"
+import { Routes } from "common/routes"
+import { Document, User } from "models"
+import React, { useState } from "react"
 
 export interface NavbarProperties {
-    readonly user: Document<User> | null;
+    readonly user: Document<User> | null
 }
 
 const Logo: React.FC = () => {
-    return <>
-        <img src={logo} alt="logo" /> Board Game Night Planner
-    </>;
+    return (
+        <>
+            <img src={logo} alt="logo" /> Board Game Night Planner
+        </>
+    )
 }
-const NavbarLogo = <Logo />;
+const NavbarLogo = <Logo />
 
 export const Navbar: React.FC<NavbarProperties> = (props) => {
-    const [showMenu, setShowMenu] = useState<boolean>(false);
+    const [showMenu, setShowMenu] = useState<boolean>(false)
 
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -27,24 +27,51 @@ export const Navbar: React.FC<NavbarProperties> = (props) => {
                 <GeneratedLink className="navbar-item" route={Routes.Root}>
                     {NavbarLogo}
                 </GeneratedLink>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a role="button" className={showMenu ? 'navbar-burger burger is-active' : 'navbar-burger burger'} aria-label="menu" aria-expanded="false" onClick={toggleShowMenu}>
+                <a
+                    role="button"
+                    className={
+                        showMenu
+                            ? "navbar-burger burger is-active"
+                            : "navbar-burger burger"
+                    }
+                    aria-label="menu"
+                    aria-expanded="false"
+                    onClick={toggleShowMenu}
+                >
                     <span aria-hidden="true" />
                     <span aria-hidden="true" />
                     <span aria-hidden="true" />
                 </a>
             </div>
 
-            <div className={showMenu ? 'navbar-menu is-active' : 'navbar-menu'}>
-                {props.user &&
+            <div className={showMenu ? "navbar-menu is-active" : "navbar-menu"}>
+                {props.user && (
                     <div className="navbar-start">
-                        <GeneratedLink className="navbar-item" route={Routes.Events_MyEvents}>My Events</GeneratedLink>
-                        {props.user.data.isAdmin && <>
-                            <GeneratedLink className="navbar-item" route={Routes.Events_Edit} parameters={{ id: undefined }}>Create Event</GeneratedLink>
-                        </>}
-                            <GeneratedLink className="navbar-item" route={Routes.Games_List}>Games</GeneratedLink>
+                        <GeneratedLink
+                            className="navbar-item"
+                            route={Routes.Events_MyEvents}
+                        >
+                            My Events
+                        </GeneratedLink>
+                        {props.user.data.isAdmin && (
+                            <>
+                                <GeneratedLink
+                                    className="navbar-item"
+                                    route={Routes.Events_Edit}
+                                    parameters={{ id: undefined }}
+                                >
+                                    Create Event
+                                </GeneratedLink>
+                            </>
+                        )}
+                        <GeneratedLink
+                            className="navbar-item"
+                            route={Routes.Games_List}
+                        >
+                            Games
+                        </GeneratedLink>
                     </div>
-                }
+                )}
 
                 <div className="navbar-end">
                     <div className="navbar-item">
@@ -53,10 +80,10 @@ export const Navbar: React.FC<NavbarProperties> = (props) => {
                 </div>
             </div>
         </nav>
-    );
+    )
 
     function toggleShowMenu() {
-        setShowMenu(!showMenu);
+        setShowMenu(!showMenu)
     }
 }
-Navbar.whyDidYouRender = true;
+Navbar.whyDidYouRender = true

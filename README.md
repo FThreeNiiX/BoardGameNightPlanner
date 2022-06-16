@@ -6,11 +6,11 @@ Users can sign up for game events, and see their past scores.
 
 ## Tech Stack
 
-* TypeScript
-* React
-* Bulma
-* Formik
-* Google Firebase
+-   TypeScript
+-   React
+-   Bulma
+-   Formik
+-   Google Firebase
 
 ## Building and Running
 

@@ -1,2 +1,2 @@
-export { GamesList } from './games-list';
-export { GamesSelect } from './games-select';
+export { GamesList } from "./games-list"
+export { GamesSelect } from "./games-select"

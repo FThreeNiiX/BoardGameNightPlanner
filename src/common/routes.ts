@@ -1,22 +1,25 @@
-import { compile, PathFunction } from 'path-to-regexp';
+import { compile, PathFunction } from "path-to-regexp"
 
 export enum Routes {
-    Root = '/',
-    Events_MyEvents = '/my-events',
-    Events_Edit = '/events/:id?',
-    Games_List = '/games',
-    Games_Edit = '/game/:id?',
+    Root = "/",
+    Events_MyEvents = "/my-events",
+    Events_Edit = "/events/:id?",
+    Games_List = "/games",
+    Games_Edit = "/game/:id?",
 }
 
-const compiledRoutes: { [route: string]: PathFunction } = {};
+const compiledRoutes: { [route: string]: PathFunction } = {}
 
-export function generateRoute(route: Routes, params?: { [property: string]: string | number | undefined }) {
+export function generateRoute(
+    route: Routes,
+    params?: { [property: string]: string | number | undefined }
+) {
     if (!params) {
-        return route;
+        return route
     }
     if (!compiledRoutes[route]) {
-        compiledRoutes[route] = compile(route);
+        compiledRoutes[route] = compile(route)
     }
-    const generator = compiledRoutes[route];
-    return generator(params);
+    const generator = compiledRoutes[route]
+    return generator(params)
 }

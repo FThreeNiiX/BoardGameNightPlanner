@@ -1,21 +1,21 @@
-import { getBggData } from 'common/utils';
-import React from 'react'
+import { getBggData } from "common/utils"
+import React from "react"
 
 interface DescriptionProps {
     url: string
 }
 
-export const Description = ({url}: DescriptionProps) =>{
-    const [description,setDescription] = React.useState('');
+export const Description = ({ url }: DescriptionProps) => {
+    const [description, setDescription] = React.useState("")
     React.useEffect(() => {
-        async function fetchData(link:string) {
-            const response = await getBggData(url, 'description')
+        async function fetchData(link: string) {
+            const response = await getBggData(url, "description")
             setDescription(response)
         }
-        if(url){
-         fetchData(url);
+        if (url) {
+            fetchData(url)
         }
-      }, [url]);
+    }, [url])
 
-      return <p>{description}</p>
+    return <p>{description}</p>
 }

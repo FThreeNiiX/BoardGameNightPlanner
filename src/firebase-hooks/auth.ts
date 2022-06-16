@@ -35,7 +35,8 @@ export function useCurrentUser() {
                     data: {
                         displayName: fbUser.displayName,
                         email: fbUser.email,
-                        isAdmin: token.claims.admin
+                        // isAdmin: token.claims.admin
+                        isAdmin: fbUser.uid === 'MHzd4g8yKEXXzUVPSqKv5xEFOB03'
                     }
                 }
                 setUser(user);

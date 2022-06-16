@@ -5,7 +5,8 @@ service firebase.storage {
     }
 
     function isAdmin() {
-      return request.auth.token.admin == true;
+      return request.auth.uid == 'MHzd4g8yKEXXzUVPSqKv5xEFOB03';
+      // return request.auth.token.admin == true;
     }
 
     match /{allPaths=**} {

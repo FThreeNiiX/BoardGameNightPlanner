@@ -5,7 +5,8 @@ service cloud.firestore {
     }
 
     function isAdmin() {
-      return request.auth.token.admin == true;
+      return request.auth.uid == 'MHzd4g8yKEXXzUVPSqKv5xEFOB03';
+     // return request.auth.token.admin == true;
     }
 
     match /{document=**} {
@@ -22,11 +23,13 @@ service cloud.firestore {
 
     match /games/{gameId} {
       allow read: if isSignedIn()
+      // allow write: if isSignedIn(
       allow write: if isSignedIn() && isAdmin()
     }
 
     match /events/{eventId} {
       allow read: if isSignedIn()
+     // allow write: if isSignedIn()
       allow write: if isSignedIn() && isAdmin()
       allow update: if isSignedIn()
         && (resource.data.timestamp > request.time

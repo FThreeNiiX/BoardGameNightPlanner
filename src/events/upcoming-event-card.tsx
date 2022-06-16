@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { attendEvent, unattendEvent } from 'firebase-hooks/events';
 import { GeneratedLink } from 'common/components/generatedLink';
 import { Routes } from 'common/routes';
+import { Thumbnail } from 'common/components/thumbnail';
 
 export interface UpcomingEventCardProperties {
     readonly event: Document<Event>;
@@ -14,7 +15,6 @@ export interface UpcomingEventCardProperties {
 
 export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (props) => {
     const [showAttendees, setshowAttendees] = useState<boolean>(false);
-
     const keys = Object.keys(props.event.data.attendees);
     const openSeats = props.event.data.game.data.maxPlayers - keys.length;
     const timestamp = props.event.data.timestamp.toDate();
@@ -57,7 +57,7 @@ export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (props) 
     return <div className="card" data-key={props.event.id}>
         <div className="card-image">
             <figure className="image is-square">
-                <img alt={`${props.event.data.game.data.name} Box Art`} src={props.event.data.game.data.imageLink} />
+               <Thumbnail url={props.event.data.game.data.bggLink}/>
             </figure>
         </div>
         <div className="card-header">

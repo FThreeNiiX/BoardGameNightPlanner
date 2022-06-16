@@ -32,7 +32,7 @@ export async function saveGame(gameWithMetadata: GameWithMetadata, id?: string) 
         name: gameWithMetadata.name,
         bggLink: gameWithMetadata.bggLink,
         maxPlayers: gameWithMetadata.maxPlayers,
-        imageLink: gameWithMetadata.imageLink,
+        // imageLink: gameWithMetadata.imageLink,
     };
 
     const collection = db.collection(Collections.Games);
@@ -43,11 +43,11 @@ export async function saveGame(gameWithMetadata: GameWithMetadata, id?: string) 
     }
 
     // Save image
-    if (gameWithMetadata.image) {
-        const snapshot = await storage.ref(id).put(gameWithMetadata.image);
-        const url = await snapshot.ref.getDownloadURL();
-        game.imageLink = url;
-    }
+    // if (gameWithMetadata.image) {
+    //     const snapshot = await storage.ref(id).put(gameWithMetadata.image);
+    //     const url = await snapshot.ref.getDownloadURL();
+    //     game.imageLink = url;
+    // }
 
     // Update game
     await collection.doc(id).set(game);

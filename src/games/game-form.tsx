@@ -5,6 +5,8 @@ import { FileField } from 'common/components/file-field';
 import { GameWithMetadata, saveGame } from 'firebase-hooks/games';
 import { useContext } from 'react';
 import { SelectedGameContext } from './games-list';
+import { getBggData } from 'common/utils';
+import { Thumbnail } from 'common/components/thumbnail';
 
 const defaultGame: GameWithMetadata = {
     name: '',
@@ -15,7 +17,7 @@ const defaultGame: GameWithMetadata = {
 
 export const GameForm: React.FC = () => {
     const selectedGameContext = useContext(SelectedGameContext);
-
+   
     return <>
         <Formik
             enableReinitialize={true}
@@ -26,19 +28,21 @@ export const GameForm: React.FC = () => {
         </Formik>
     </>;
 
-    function renderForm(props: FormikProps<GameWithMetadata>) {
+
+function renderForm(props: FormikProps<GameWithMetadata>) {
+    
         return <Form>
             {/* <h2 className="title">Edit Game</h2> */}
             <Field<GameWithMetadata> name="name" label="Name" type="text" />
             <Field<GameWithMetadata> name="bggLink" label="BGG Link" type="text" />
             <Field<GameWithMetadata> name="maxPlayers" label="Max Players" type="number" />
-            {props.values.imageLink &&
+            {props.values.bggLink &&
                 <figure className="image is-128x128">
-                    <img alt="Game" src={props.values.imageLink} />
+                    <Thumbnail url={props.values.bggLink}/>
                 </figure>
             }
-            <Field<GameWithMetadata> name="image" label="Image" type="file" component={FileField} />
-            <Field<GameWithMetadata> name="updateExistingEvents" label="Update Existing Events?" type="checkbox" checked={props.values.updateExistingEvents || false} />
+            {/* <Field<GameWithMetadata> name="image" label="Image" type="file" component={FileField} /> */}
+            {/* <Field<GameWithMetadata> name="updateExistingEvents" label="Update Existing Events?" type="checkbox" checked={props.values.updateExistingEvents || false} /> */}
             <button className="button is-primary" type="submit" disabled={props.isSubmitting}>Save</button>
         </Form>;
     }

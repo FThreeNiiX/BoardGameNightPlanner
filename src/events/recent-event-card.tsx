@@ -3,6 +3,7 @@ import { Document, Event, User } from 'models';
 import { EventScoreForm } from './event-score-form';
 import { useState } from 'react';
 import { AttendeeWithScore } from './attendee-with-score';
+import { Thumbnail } from 'common/components/thumbnail';
 
 export interface RecentEventCardProperties {
     readonly event: Document<Event>;
@@ -32,8 +33,8 @@ export const RecentEventCard: React.FC<RecentEventCardProperties> = (props) => {
     return <div className="card" data-key={props.event.id}>
         <div className="card-image">
             <figure className="image is-square">
-                <img alt={`${props.event.data.game.data.name} Box Art`} src={props.event.data.game.data.imageLink} />
-            </figure>
+               <Thumbnail url={props.event.data.game.data.bggLink}/>
+             </figure>
         </div>
         <div className="card-header">
             <h3 className="card-header-title is-size-3">

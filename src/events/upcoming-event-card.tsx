@@ -54,8 +54,6 @@ export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (props) 
         }
     }
 
-    const name = props.event.data.game.data.name.replace(' ','+')
-
     return <div className="card" data-key={props.event.id}>
         <div className="card-image">
             <figure className="image is-square">

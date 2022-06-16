@@ -26,4 +26,5 @@ export interface Event {
     timestamp: firebase.firestore.Timestamp
     attendees: Attendees
     scores?: Scores
+    host: Document<User> | null
 }

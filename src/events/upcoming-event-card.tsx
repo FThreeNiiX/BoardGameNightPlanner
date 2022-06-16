@@ -121,6 +121,7 @@ export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (
                         <br />
                         {timestamp.toLocaleTimeString()}
                     </p>
+                    <p>Host: {props.event.data?.host?.data.displayName}</p>
                     <h5>
                         {status}
                         {openSeats < props.event.data.game.data.maxPlayers && (

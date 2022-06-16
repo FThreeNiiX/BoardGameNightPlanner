@@ -7,10 +7,12 @@ import { GamesSelect } from "games"
 import { Event } from "models"
 import * as React from "react"
 import { RouteComponentProps } from "react-router"
+import { UserSelect } from "users/user-select"
 
 const defaultEvent: Event = {
     timestamp: firebase.firestore.Timestamp.fromDate(new Date()),
     attendees: {},
+    host: null,
     game: {
         id: "",
         data: {
@@ -44,12 +46,17 @@ export const EventForm: React.FC<RouteComponentProps<{ id?: string }>> = (
             <Form>
                 <h2 className="title">Edit Event</h2>
                 <TimestampField<Event> name="timestamp" label="Timestamp" />
-                {/* <Field<Event> name="timestamp" label="Timestamp" component={TimestampField} /> */}
                 <Field<Event>
                     name="game"
                     label="Game"
                     type="file"
                     component={GamesSelect}
+                />
+                <Field<Event>
+                    name="host"
+                    label="Host"
+                    type="file"
+                    component={UserSelect}
                 />
                 <button className="button is-primary" type="submit">
                     Save
@@ -62,6 +69,7 @@ export const EventForm: React.FC<RouteComponentProps<{ id?: string }>> = (
         values: Event,
         formikHelpers: FormikHelpers<Event>
     ) {
+        console.log("values", values)
         await saveEvent(props.match.params.id, values)
         formikHelpers.resetForm({ values: defaultEvent })
     }

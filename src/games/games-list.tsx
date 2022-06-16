@@ -14,6 +14,7 @@ const GamesListTable: React.FC = () => {
                 <tr className="tr">
                     <th className="th">Name</th>
                     <th className="th">Max Players</th>
+                    <th className="th">Times Played</th>
                 </tr>
             </thead>
             <tbody className="tbody">

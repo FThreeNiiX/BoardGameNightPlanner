@@ -29,16 +29,18 @@ export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (props) 
     let status = <></>;
     if (attending) {
         status = <em><i className="fas fa-check" /> You're Attending!</em>;
-    } else if (timestampMidnight <= now) {
-        status = <em><i className="fas fa-times" /> Closed</em>;
-    } else if (openSeats > 0) {
+    } 
+    // else if (timestampMidnight <= now) {
+    //     status = <em><i className="fas fa-times" /> Closed</em>;
+    // } 
+    else if (openSeats > 0) {
         status = <em>{openSeats + ' Seats Available'}</em>;
     } else {
         status = <em><i className="fas fa-times" /> Full</em>;
     }
 
     let actions = <></>;
-    if (timestampMidnight > now) {
+    // if (timestampMidnight > now) {
         if (!attending && openSeats > 0) {
             actions = <div className="card-footer">
                 <button type="button" className="card-footer-item" onClick={async () => await attendEvent(props.event.id, props.user)}>Attend</button>
@@ -52,7 +54,7 @@ export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (props) 
                 </button>
             </div>;
         }
-    }
+    // }
 
     return <div className="card" data-key={props.event.id}>
         <div className="card-image">

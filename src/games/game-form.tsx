@@ -11,6 +11,7 @@ const defaultGame: GameWithMetadata = {
     bggLink: '',
     maxPlayers: 4,
     updateExistingEvents: false,
+    timesPlayed: 0
 };
 
 export const GameForm: React.FC = () => {
@@ -28,12 +29,12 @@ export const GameForm: React.FC = () => {
 
 
 function renderForm(props: FormikProps<GameWithMetadata>) {
-    
         return <Form>
             {/* <h2 className="title">Edit Game</h2> */}
             <Field<GameWithMetadata> name="name" label="Name" type="text" />
             <Field<GameWithMetadata> name="bggLink" label="BGG Link" type="text" />
             <Field<GameWithMetadata> name="maxPlayers" label="Max Players" type="number" />
+           {selectedGameContext.selectedGame &&<Field<GameWithMetadata> name="timesPlayed" label="Times Played" type="number" />}
             {props.values.bggLink &&
                 <figure className="image is-128x128">
                     <Thumbnail url={props.values.bggLink}/>

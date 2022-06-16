@@ -4,6 +4,7 @@ import { EventScoreForm } from './event-score-form';
 import { useState } from 'react';
 import { AttendeeWithScore } from './attendee-with-score';
 import { Thumbnail } from 'common/components/thumbnail';
+import { GameTimesPlayedForm } from 'games/game-times-played-form';
 
 export interface RecentEventCardProperties {
     readonly event: Document<Event>;
@@ -45,11 +46,15 @@ export const RecentEventCard: React.FC<RecentEventCardProperties> = (props) => {
             <div className="content">
                 <p>{timestamp.toDateString()}</p>
                 {scoresMode ?
-                    <EventScoreForm eventId={props.event.id}
-                        attendees={attendees}
-                        onCancel={setScoresModeInactive} />
+                    <>
+                        <EventScoreForm eventId={props.event.id}
+                            attendees={attendees}
+                            onCancel={setScoresModeInactive} 
+                        />
+                    </>
                     : renderAttendees(attendees)
                 }
+                <GameTimesPlayedForm game={props.event.data.game} event={props.event}/>
             </div>
         </div>
     </div>;

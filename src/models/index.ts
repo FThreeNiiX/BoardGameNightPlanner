@@ -14,6 +14,7 @@ export interface Game {
     bggLink: string;
     maxPlayers: number;
     imageLink?: string;
+    timesPlayed?: number
 }
 
 export type Attendees = { [userId: string]: string };

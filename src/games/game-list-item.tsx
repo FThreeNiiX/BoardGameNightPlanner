@@ -12,6 +12,7 @@ export const GameListItem: React.FC<GameListItemProperties> = (props) => {
     return <tr className={selectedGameContext.selectedGame === props.game ? 'tr is-selected' : 'tr'} onClick={handleItemClick}>
         <td className="td">{props.game.data.name}</td>
         <td className="td">{props.game.data.maxPlayers}</td>
+        <td className="td">{props.game.data.timesPlayed || 0}</td>
     </tr>;
 
     function handleItemClick(event: React.MouseEvent<HTMLTableRowElement>) {

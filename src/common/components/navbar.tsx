@@ -4,6 +4,7 @@ import { GeneratedLink } from "common/components/generatedLink"
 import { Routes } from "common/routes"
 import { Document, User } from "models"
 import React, { useState } from "react"
+import usePWA from "react-pwa-install-prompt"
 
 export interface NavbarProperties {
     readonly user: Document<User> | null
@@ -20,6 +21,24 @@ const NavbarLogo = <Logo />
 
 export const Navbar: React.FC<NavbarProperties> = (props) => {
     const [showMenu, setShowMenu] = useState<boolean>(false)
+    const { isStandalone, isInstallPromptSupported, promptInstall } = usePWA()
+
+    const onClickInstall = async () => {
+        const didInstall = await promptInstall()
+        if (didInstall) {
+            // User accepted PWA install
+        }
+    }
+
+    const renderInstallButton = () => {
+        if (!isStandalone)
+            return (
+                <button className="button is-primary" onClick={onClickInstall}>
+                    Install BG-Billy
+                </button>
+            )
+        return null
+    }
 
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -27,6 +46,7 @@ export const Navbar: React.FC<NavbarProperties> = (props) => {
                 <GeneratedLink className="navbar-item" route={Routes.Root}>
                     {NavbarLogo}
                 </GeneratedLink>
+                {renderInstallButton()}
                 <a
                     role="button"
                     className={

@@ -181,9 +181,9 @@ export const UpcomingEventCard: React.FC<UpcomingEventCardProperties> = (
         // create calendar event
         const eventDate = props.event.data.timestamp.toDate()
         const icsResult = ics.createEvent({
-            description: `Jeff's Weekly Board Game Night!\nFeatured Game: ${props.event.data.game.data.name}\nBGG Link: ${props.event.data.game.data.bggLink}`,
+            description: `BG BillyBoard Game Night!\nFeatured Game: ${props.event.data.game.data.name}\nBGG Link: ${props.event.data.game.data.bggLink}`,
             duration: { hours: 3 },
-            location: "3464 Roxboro Rd NE, Apt 409, Atlanta, GA 30326, USA",
+            location: "712 Glenwood Ave SE Unit B, Atlanta, GA 30312, USA",
             start: [
                 eventDate.getFullYear(),
                 eventDate.getMonth() + 1,

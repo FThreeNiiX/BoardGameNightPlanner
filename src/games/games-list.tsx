@@ -18,15 +18,58 @@ const GamesListTable: React.FC<GamesListProperties> = ({ user }) => {
     }, [games, selectedGame, setSelectedGame, user])
 
     return (
-        <>
+        <div
+            style={{
+                overflow: "auto",
+                maxHeight:
+                    window.innerWidth <= 760
+                        ? `${window.innerHeight / 2}px`
+                        : `${window.innerHeight}px`,
+            }}
+        >
             <table className="table">
                 <thead className="thead">
                     <tr className="tr">
-                        <th className="th">Name</th>
-                        <th className="th">Cover Art</th>
-                        <th className="th">Max Players</th>
-                        <th className="th">Times Played</th>
-                        <th className="th">Wishlisted</th>
+                        <th
+                            className="th"
+                            style={{
+                                position: "sticky",
+                                top: 0,
+                                background: "white",
+                            }}
+                        >
+                            Name
+                        </th>
+                        <th
+                            className="th"
+                            style={{
+                                position: "sticky",
+                                top: 0,
+                                background: "white",
+                            }}
+                        >
+                            Max
+                        </th>
+                        <th
+                            className="th"
+                            style={{
+                                position: "sticky",
+                                top: 0,
+                                background: "white",
+                            }}
+                        >
+                            Played
+                        </th>
+                        <th
+                            className="th"
+                            style={{
+                                position: "sticky",
+                                top: 0,
+                                background: "white",
+                            }}
+                        >
+                            {"<3"}
+                        </th>
                     </tr>
                 </thead>
                 <tbody className="tbody">
@@ -36,7 +79,7 @@ const GamesListTable: React.FC<GamesListProperties> = ({ user }) => {
                 </tbody>
             </table>
             <span>{gamesError}</span>
-        </>
+        </div>
     )
 }
 GamesListTable.whyDidYouRender = false

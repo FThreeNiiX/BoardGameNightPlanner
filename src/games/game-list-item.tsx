@@ -36,9 +36,7 @@ export const GameListItem: React.FC<GameListItemProperties> = ({
             <td className="td">
                 {game.data.name}
                 <Campaign url={game.data.bggLink} />
-            </td>
-            <td className="td">
-                {" "}
+                <br />
                 <Thumbnail url={game.data.bggLink} small={true} />
             </td>
             <td className="td">{game.data.maxPlayers}</td>

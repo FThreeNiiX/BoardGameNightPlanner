@@ -13,7 +13,7 @@ export interface NavbarProperties {
 const Logo: React.FC = () => {
     return (
         <>
-            <img src={logo} alt="logo" /> Board Game Night Planner
+            <img src={logo} alt="logo" /> BG Billy
         </>
     )
 }

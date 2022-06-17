@@ -3,16 +3,18 @@ import { Thumbnail } from "common/components/thumbnail"
 import * as React from "react"
 import { useContext } from "react"
 import { SelectedGameContext } from "./games-list"
-
-export const GameDetails: React.FC = () => {
+interface GameDetailsProps {
+    url?: string
+}
+export const GameDetails: React.FC<GameDetailsProps> = ({ url }) => {
     const { selectedGame } = useContext(SelectedGameContext)
 
-    return selectedGame ? (
+    return selectedGame || url ? (
         <div className="card">
             <div className="card-image">
                 <figure className="image is-square">
                     <Thumbnail
-                        url={selectedGame?.data.bggLink || ""}
+                        url={url || selectedGame?.data.bggLink || ""}
                         small={false}
                     />
                 </figure>
@@ -20,7 +22,7 @@ export const GameDetails: React.FC = () => {
             <div className="card-header">
                 <h3 className="card-header-title is-size-3">
                     <a
-                        href={selectedGame?.data.bggLink}
+                        href={url || selectedGame?.data.bggLink}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -30,7 +32,9 @@ export const GameDetails: React.FC = () => {
             </div>
             <div className="card-content">
                 <div className="content">
-                    <Description url={selectedGame?.data.bggLink || ""} />
+                    <Description
+                        url={url || selectedGame?.data.bggLink || ""}
+                    />
                     <h4 className="is-size-5">
                         <a
                             href={`https://www.youtube.com/results?search_query=how+to+play+${selectedGame?.data.name.replace(

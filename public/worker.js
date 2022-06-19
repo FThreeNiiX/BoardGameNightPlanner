@@ -1,5 +1,5 @@
 var CACHE_NAME = "bg-billy"
-var urlsToCache = ["/", "/completed"]
+var urlsToCache = ["/", "/my-events", "/events", "games"]
 
 // Install a service worker
 self.addEventListener("install", (event) => {
